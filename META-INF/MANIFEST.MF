@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LESS CSS Compiler for Java
+Bundle-SymbolicName: org.lesscss
+Bundle-Version: 1.3.1.qualifier
+Export-Package: org.lesscss
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: lib/rhino-1.7R3-sources.jar,
+ lib/rhino-1.7R3.jar,
+ .
+Import-Package: com.google.common.base,
+ com.google.common.collect,
+ com.google.common.io,
+ org.slf4j

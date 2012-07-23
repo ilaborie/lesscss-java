@@ -15,6 +15,7 @@
 package org.lesscss;
 
 import static java.util.regex.Pattern.MULTILINE;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +23,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.io.FileUtils;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
+import com.google.common.io.Files;
 
 /**
  * Represents the metadata and content of a LESS source.
@@ -52,14 +56,12 @@ public class LessSource {
      * @throws IOException If the LESS source cannot be read.
      */
     public LessSource(File file) throws FileNotFoundException, IOException {
-        if (file == null) {
-            throw new IllegalArgumentException("File must not be null.");
-        }
+    	Preconditions.checkNotNull(file, "File must not be null.");
         if (!file.exists()) { 
             throw new FileNotFoundException("File " + file.getAbsolutePath() + " not found.");
         }
         this.file = file;
-        this.content = this.normalizedContent = FileUtils.readFileToString(file);
+        this.content = this.normalizedContent = Files.toString(file,Charsets.UTF_8 );
         resolveImports();
     }
     
